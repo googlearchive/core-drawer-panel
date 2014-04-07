@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+
+  <title>core-item</title>
+
+  <script src="../platform/platform.js"></script>
+
+  <link rel="import" href="core-item.html">
+
+  <style>
+    body {
+      font-family: sans-serif;
+    }
+    section {
+      width: 300px;
+      padding: 10px;
+    }
+  </style>
+
+</head>
+<body unresolved>
+
+  <h2>core-light-theme</h2>
+
+  <section theme="core-light-theme">
+    <core-item icon="settings" label="Settings"></core-item>
+    <core-item icon="dialog" label="Dialog" active></core-item>
+  </section>
+
+  <h2>core-dark-theme</h2>
+
+  <section style="background: #333;" theme="core-dark-theme">
+    <core-item icon="settings" label="Settings"></core-item>
+    <core-item icon="dialog" label="Dialog" active></core-item>
+  </section>
+
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!doctype html>
+<!--
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<html>
+<head>
+
+  <title>core-menu</title>
+
+  <script src="../platform/platform.js"></script>
+
+  <link rel="import" href="core-menu.html">
+  <link rel="import" href="core-submenu.html">
+  <link rel="import" href="../core-item/core-item.html">
+
+  <style>
+    body {
+      font-family: sans-serif;
+    }
+
+    core-menu {
+      width: 300px;
+    }
+  </style>
+
+</head>
+<body unresolved>
+
+  <h2>core-light-theme</h2>
+  <core-menu selected="0" theme="core-light-theme">
+    <core-item icon="settings" label="Settings"></core-item>
+    <core-item icon="dialog" label="Dialog"></core-item>
+    <core-item icon="search" label="Search"></core-item>
+  </core-menu>
+
+  <h2>core-dark-theme</h2>
+  <core-menu selected="0" theme="core-dark-theme">
+    <core-item icon="settings" label="Settings"></core-item>
+    <core-item icon="dialog" label="Dialog"></core-item>
+    <core-item icon="search" label="Search"></core-item>
+  </core-menu>
+
+  <h2>no icons</h2>
+  <core-menu selected="0" theme="core-dark-theme">
+    <core-item label="Settings"></core-item>
+    <core-item label="Dialog"></core-item>
+    <core-item label="Search"></core-item>
+  </core-menu>
+
+  <h2>sub-menu</h2>
+  <core-menu selected="0" theme="core-dark-theme">
+    <core-submenu icon="settings" label="Topics">
+      <core-item label="Topics 1"></core-item>
+      <core-item label="Topics 2"></core-item>
+    </core-submenu>
+    <core-submenu icon="settings" label="Favorites">
+      <core-item label="Favorites 1"></core-item>
+      <core-item label="Favorites 2"></core-item>
+      <core-item label="Favorites 3"></core-item>
+    </core-submenu>
+  </core-menu>
+
+  <h2>links (via href)</h2>
+  <core-menu selected="0" theme="core-light-theme">
+    <core-item icon="settings" label="Settings" href="#settings"></core-item>
+    <core-item icon="dialog" label="Dialog" href="#dialog"></core-item>
+    <core-item icon="search" label="Search" href="#search"></core-item>
+  </core-menu>
+
+  <h2>links (via &lt;a&gt;)</h2>
+  <core-menu selected="0" theme="core-light-theme">
+    <core-item icon="settings" label="Settings"><a href="#settings" target="_self"></a></core-item>
+    <core-item icon="dialog" label="Dialog"><a href="#dialog" target="_self"></a></core-item>
+    <core-item icon="search" label="Search"><a href="#search" target="_self"></a></core-item>
+  </core-menu>
+
+</body>
+</html>

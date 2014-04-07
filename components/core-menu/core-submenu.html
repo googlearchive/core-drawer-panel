@@ -1,0 +1,96 @@
+<!--
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE
+The complete set of authors may be found at http://polymer.github.io/AUTHORS
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS
+-->
+
+<!--
+Use to create nested menus inside of core-menu elements.
+
+    <core-menu selected="0">
+      <core-submenu icon="settings" label="Topics">
+        <core-item label="Topics 1"></core-item>
+        <core-item label="Topics 2"></core-item>
+      </core-submenu>
+      <core-submenu icon="settings" label="Favorites">
+        <core-item label="Favorites 1"></core-item>
+        <core-item label="Favorites 2"></core-item>
+        <core-item label="Favorites 3"></core-item>
+      </core-submenu>
+    </core-menu>
+
+@group Polymer Core Elements
+@element core-submenu
+@extends core-menu
+-->
+
+<link rel="import" href="../core-theme-aware/core-theme-aware.html">
+<link rel="import" href="../core-item/core-item.html">
+<link rel="import" href="../core-menu/core-menu.html">
+<link rel="import" href="../core-collapse/core-collapse.html">
+
+<polymer-element name="core-submenu" extends="core-item" attributes="active selected selectedItem">
+<template>
+
+  <link rel="stylesheet" href="core-submenu.css">
+
+  <core-item id="item" src="{{src}}" label="{{label}}" icon="{{icon}}" active?="{{active}}" on-tap="{{activate}}">
+    <content select=".item-content"></content>
+  </core-item>
+
+  <core-menu id="menu" selected="{{selected}}" selectedItem="{{selectedItem}}">
+    <content></content>
+  </core-menu>
+
+  <core-collapse targetId="menu" closed="{{collapsed}}"></core-collapse>
+
+</template>
+<script>
+
+  Polymer('core-submenu', {
+
+    active: false,
+    collapsed: true,
+
+    get items() {
+      return this.$.menu.items;
+    },
+
+    hasItems: function() {
+      return !!this.items.length;
+    },
+
+    unselectAllItems: function() {
+      this.$.menu.selected = null;
+      this.$.menu.clearSelection();
+    },
+
+    activeChanged: function() {
+      if (this.hasItems()) {
+        this.collapsed = !this.active;
+      }
+      if (!this.active) {
+        this.unselectAllItems();
+      }
+      this.$.item.classList.toggle('no-active-bg', this.hasItems());
+    },
+
+    activate: function() {
+      if (this.hasItems() && this.active) {
+        this.collapsed = !this.collapsed;
+        this.unselectAllItems();
+        this.fire("core-select", {isSelected: true, item: this});
+      }
+    },
+
+    getItemHeight: function() {
+      return this.$ && this.$.item && this.$.item.offsetHeight;
+    }
+
+  });
+
+</script>
+</polymer-element>

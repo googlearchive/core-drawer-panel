@@ -1,0 +1,82 @@
+<!--
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<!--
+`core-menu` is a theme-aware selector.
+
+    <core-menu selected="0">
+      <core-item icon="settings" label="Settings"></core-item>
+      <core-item icon="dialog" label="Dialog"></core-item>
+      <core-item icon="search" label="Search"></core-item>
+    </core-menu>
+
+The `selectedItem` property references the selected item.
+
+    <core-menu selected="0" selectedItem="{{item}}">
+      <core-item icon="settings" label="Settings"></core-item>
+      <core-item icon="dialog" label="Dialog"></core-item>
+      <core-item icon="search" label="Search"></core-item>
+    </core-menu>
+
+    <div>selected label: {{item.label}}</div>
+
+The `core-select` event signals selection change.
+
+    <core-menu selected="0" on-core-select="{{selectAction}}">
+      <core-item icon="settings" label="Settings"></core-item>
+      <core-item icon="dialog" label="Dialog"></core-item>
+      <core-item icon="search" label="Search"></core-item>
+    </core-menu>
+
+    ...
+
+    selectAction: function(e, detail) {
+      if (detail.isSelected) {
+        var selectedItem = detail.item;
+        ...
+      }
+    }
+
+@group Polymer Core Elements
+@element core-menu
+@extends core-selector
+-->
+
+<link rel="import" href="../core-selector/core-selector.html">
+<link rel="import" href="../core-theme-aware/core-theme-aware.html">
+
+<polymer-element name="core-menu" extends="core-selector" attributes="theme" on-core-select="{{selectionChange}}">
+<template>
+
+  <link rel="stylesheet" href="core-menu.css">
+  <shadow></shadow>
+
+</template>
+<script>
+
+  Polymer('core-menu', Platform.mixin({
+
+    attached: function() {
+      this.validateTheme();
+    },
+
+    selectionChange: function(e, detail) {
+      if (detail.isSelected) {
+        var item = detail.item;
+        while (item.selectedItem) {
+          item = item.selectedItem;
+        }
+        this.selectedItem = item;
+      }
+    }
+
+  }, Polymer.ThemeAware));
+
+</script>
+</polymer-element>

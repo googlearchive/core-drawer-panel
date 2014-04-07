@@ -1,0 +1,19 @@
+{
+  "name": "core-menu",
+  "private": true,
+  "dependencies": {
+    "core-selector": "Polymer/core-selector#master",
+    "core-theme-aware": "Polymer/core-theme-aware#master"
+  },
+  "homepage": "https://github.com/Polymer/core-menu",
+  "_release": "dbf314fdd6",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "dbf314fdd6f3520486847a6566935a89a5779ee8"
+  },
+  "_source": "git://github.com/Polymer/core-menu.git",
+  "_target": "master",
+  "_originalSource": "Polymer/core-menu",
+  "_direct": true
+}

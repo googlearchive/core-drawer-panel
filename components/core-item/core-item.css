@@ -1,0 +1,86 @@
+/*
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+*/
+
+:host {
+  display: block;
+  position: relative;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  height: 40px;
+  line-height: 35px;
+  font-size: 16px;
+  padding: 0 10px;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  white-space: nowrap;
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+:host(:hover) {
+  opacity: 0.9;
+}
+
+:host(.core-selected, [active]) {
+  opacity: 1;
+}
+
+:host(.core-light-theme.core-selected, .core-light-theme[active]) {
+  background: #f2f2f2;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+:host(.core-dark-theme) {
+  color: #b3b3b3;
+}
+	
+:host(.core-dark-theme:hover) {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+:host(.core-dark-theme.core-selected, .core-dark-theme[active]) {
+  background-color: #000;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+:host([active].no-active-bg) {
+  background-color: transparent;
+  border: 1px solid transparent;
+}
+
+/* icon and label */
+
+core-icon:not([showing]) {
+  display: none !important;
+}
+
+core-icon {
+  vertical-align: middle;
+  margin-right: 16px;
+}
+
+#label {
+  vertical-align: middle;
+  padding-right: 20px;
+}
+
+/*@polyfill :host #label > a, #link */
+::content > a, #link {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: -1px;
+}
+
+#link[hidden] {
+  display: none;
+}
