@@ -1,4 +1,4 @@
-core-item
-=========
+core-layout-grid
+================
 
-See the [component page](http://polymer.github.io/core-item) for more information.
+See the [component page](http://polymer.github.io/core-layout-grid) for more information.
