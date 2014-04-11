@@ -8,11 +8,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 */
 
 :host {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: -moz-flex;
-  display: -webkit-flex;
-  display: flex;
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: -moz-flex !important;
+  display: -webkit-flex !important;
+  display: flex !important;
 }
   
 :host([core-flow=h]) {

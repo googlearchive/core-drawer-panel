@@ -8,13 +8,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <!--
-`core-menu` is a theme-aware selector.
+`core-menu` is a selector which styles to looks like a menu.
 
     <core-menu selected="0">
       <core-item icon="settings" label="Settings"></core-item>
       <core-item icon="dialog" label="Dialog"></core-item>
       <core-item icon="search" label="Search"></core-item>
     </core-menu>
+    
+When an item is selected the `core-selected` class is added to it.  The user can
+use the class to add more stylings to the selected item.
+
+    core-item.core-selected {
+      color: red;
+    }
 
 The `selectedItem` property references the selected item.
 
@@ -49,34 +56,13 @@ The `core-select` event signals selection change.
 -->
 
 <link rel="import" href="../core-selector/core-selector.html">
-<link rel="import" href="../core-theme-aware/core-theme-aware.html">
 
-<polymer-element name="core-menu" extends="core-selector" attributes="theme" on-core-select="{{selectionChange}}">
+<polymer-element name="core-menu" extends="core-selector" noscript>
 <template>
 
   <link rel="stylesheet" href="core-menu.css">
+  
   <shadow></shadow>
 
 </template>
-<script>
-
-  Polymer('core-menu', Platform.mixin({
-
-    attached: function() {
-      this.validateTheme();
-    },
-
-    selectionChange: function(e, detail) {
-      if (detail.isSelected) {
-        var item = detail.item;
-        while (item.selectedItem) {
-          item = item.selectedItem;
-        }
-        this.selectedItem = item;
-      }
-    }
-
-  }, Polymer.ThemeAware));
-
-</script>
 </polymer-element>

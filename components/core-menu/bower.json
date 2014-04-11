@@ -3,7 +3,6 @@
   "private": true,
   "dependencies": {
     "core-selector": "Polymer/core-selector#master",
-    "core-theme-aware": "Polymer/core-theme-aware#master",
     "core-collapse": "Polymer/core-collapse#master"
   }
 }

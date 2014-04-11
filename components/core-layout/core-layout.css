@@ -5,11 +5,11 @@ license that can be found in the LICENSE file.
 */
 
 [core-flow] {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: -moz-flex;
-  display: -webkit-flex;
-  display: flex;
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: -moz-flex !important;
+  display: -webkit-flex !important;
+  display: flex !important;
 }
 
 [core-flow=h] {

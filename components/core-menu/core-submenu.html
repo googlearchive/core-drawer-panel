@@ -8,26 +8,35 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <!--
-Use to create nested menus inside of core-menu elements.
+Use to create nested menus inside of `core-menu` elements.
 
     <core-menu selected="0">
+    
       <core-submenu icon="settings" label="Topics">
-        <core-item label="Topics 1"></core-item>
-        <core-item label="Topics 2"></core-item>
+        <core-item label="Topic 1"></core-item>
+        <core-item label="Topic 2"></core-item>
       </core-submenu>
+      
       <core-submenu icon="settings" label="Favorites">
-        <core-item label="Favorites 1"></core-item>
-        <core-item label="Favorites 2"></core-item>
-        <core-item label="Favorites 3"></core-item>
+        <core-item label="Favorite 1"></core-item>
+        <core-item label="Favorite 2"></core-item>
+        <core-item label="Favorite 3"></core-item>
       </core-submenu>
+      
     </core-menu>
+    
+There is a margin set on the submenu to indent the items.
+You can override the margin by doing:
+
+    core-submenu::shadow #submenu {
+      margin-left: 20px;
+    }
 
 @group Polymer Core Elements
 @element core-submenu
-@extends core-menu
+@extends core-item
 -->
 
-<link rel="import" href="../core-theme-aware/core-theme-aware.html">
 <link rel="import" href="../core-item/core-item.html">
 <link rel="import" href="../core-menu/core-menu.html">
 <link rel="import" href="../core-collapse/core-collapse.html">
@@ -37,15 +46,15 @@ Use to create nested menus inside of core-menu elements.
 
   <link rel="stylesheet" href="core-submenu.css">
 
-  <core-item id="item" src="{{src}}" label="{{label}}" icon="{{icon}}" active?="{{active}}" on-tap="{{activate}}">
+  <core-item src="{{src}}" label="{{label}}" icon="{{icon}}" class="{{ {'core-selected' : active} | tokenList}}" on-tap="{{activate}}">
     <content select=".item-content"></content>
   </core-item>
 
-  <core-menu id="menu" selected="{{selected}}" selectedItem="{{selectedItem}}">
+  <core-menu id="submenu" selected="{{selected}}" selectedItem="{{selectedItem}}">
     <content></content>
   </core-menu>
 
-  <core-collapse targetId="menu" closed="{{collapsed}}"></core-collapse>
+  <core-collapse targetId="submenu" closed="{{collapsed}}"></core-collapse>
 
 </template>
 <script>
@@ -56,7 +65,7 @@ Use to create nested menus inside of core-menu elements.
     collapsed: true,
 
     get items() {
-      return this.$.menu.items;
+      return this.$.submenu.items;
     },
 
     hasItems: function() {
@@ -64,8 +73,8 @@ Use to create nested menus inside of core-menu elements.
     },
 
     unselectAllItems: function() {
-      this.$.menu.selected = null;
-      this.$.menu.clearSelection();
+      this.$.submenu.selected = null;
+      this.$.submenu.clearSelection();
     },
 
     activeChanged: function() {
@@ -75,7 +84,6 @@ Use to create nested menus inside of core-menu elements.
       if (!this.active) {
         this.unselectAllItems();
       }
-      this.$.item.classList.toggle('no-active-bg', this.hasItems());
     },
 
     activate: function() {
@@ -84,12 +92,8 @@ Use to create nested menus inside of core-menu elements.
         this.unselectAllItems();
         this.fire("core-select", {isSelected: true, item: this});
       }
-    },
-
-    getItemHeight: function() {
-      return this.$ && this.$.item && this.$.item.offsetHeight;
     }
-
+    
   });
 
 </script>

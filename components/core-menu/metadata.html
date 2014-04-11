@@ -1,26 +1,55 @@
-﻿<x-meta id="core-menu" label="Polymer Core Menu" group="Polymer Core" isContainer>
+<x-meta id="core-menu" label="Polymer Core Menu" group="Polymer Core" isContainer>
+
   <template>
-    <core-menu selected="0" theme="core-dark-theme">
+  
+    <core-menu selected="0" style="font-size: 16px;">
+  
       <core-submenu icon="settings" label="Topics">
+      
         <core-item label="Topic 1"></core-item>
         <core-item label="Topic 2"></core-item>
-        <core-item label="Topic 3"></core-item>
+        
       </core-submenu>
+      
       <core-submenu icon="settings" label="Favorites">
-        <core-item label="Favorites 1"></core-item>
-        <core-item label="Favorites 2"></core-item>
-        <core-item label="Favorites 3"></core-item>
-        <core-item label="Favorites 4"></core-item>
+      
+        <core-item label="Favorite 1"></core-item>
+        <core-item label="Favorite 2"></core-item>
+        <core-item label="Favorite 3"></core-item>
+        
       </core-submenu>
-      <core-submenu icon="settings" label="Explore">
-        <core-item label="Explore 1"></core-item>
-        <core-item label="Explore 2"></core-item>
-      </core-submenu>
+      
     </core-menu>
+
   </template>
+  
   <template id="imports">
-    <link rel="import" href="core-menu.html">
+  
     <link rel="import" href="core-submenu.html">
-    <link rel="import" href="../core-item/core-item.html">
+    
   </template>
+  
+</x-meta>
+
+<x-meta id="core-submenu" label="Polymer Core Sub Menu" group="Polymer Core" isContainer>
+
+  <template>
+  
+    <core-submenu icon="settings" label="Topics">
+    
+      <core-item label="Topic 1"></core-item>
+      <core-item label="Topic 2"></core-item>
+      
+    </core-submenu>
+      
+    </core-menu>
+
+  </template>
+  
+  <template id="imports">
+  
+    <link rel="import" href="core-submenu.html">
+    
+  </template>
+  
 </x-meta>

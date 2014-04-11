@@ -8,93 +8,95 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <!--
-@group Polymer Core Elements
-
-core-item is a simple line-item object: a label and/or an icon that can also act as a link.
+`core-item` is a simple line-item object: a label and/or an icon that can also 
+act as a link.
 
 Example:
 
-     <core-item icon="settings" label="Settings"></core-item>
+    <core-item icon="settings" label="Settings"></core-item>
+    
+To use as a link, set `href` property.
 
+Example:
+
+    <core-item icon="settings" label="Settings" href="/settings"></core-item>
+
+@group Polymer Core Elements
 @element core-item
+@homepage github.io
 -->
 
 <link rel="import" href="../core-icon/core-icon.html">
 
-<polymer-element name="core-item" extends="core-theme-aware" attributes="src label icon item href">
+<polymer-element name="core-item" attributes="label icon src href">
 <template>
 
   <link rel="stylesheet" href="core-item.css">
-
-  <core-icon src="{{src}}" icon="{{icon}}" showing?="{{icon || src}}"></core-icon>
-  <span id="label">{{label}}<content></content></span>
-  <a id="link" href="{{href}}" hidden?="{{!href}}"></a>
+  <link rel="stylesheet" href="../core-layout/core-layout.css">
+  
+  <div class="item-container" core-flow core-align="center">
+  
+    <template if="{{icon || src}}">
+      <core-icon src="{{src}}" icon="{{icon}}"></core-icon>
+    </template>
+    
+    <span id="label" core-flex core-flow core-align="center">{{label}}<content></content></span>
+    
+    <template if="{{href}}">
+      <a id="link" href="{{href}}"></a>
+    </template>
+    
+  </div>
 
 </template>
 <script>
 
   Polymer('core-item', {
+    
     /**
-      * The URL of an image for the icon.
-      *
-      * @attribute src
-      * @type string
-      * @default ''
-      */
-
-    /**
-      * Specifies the icon from the Polymer icon set.
-      *
-      * @attribute icon
-      * @type string
-      * @default ''
-      */
+     * The URL of an image for the icon.
+     *
+     * @attribute src
+     * @type string
+     * @default ''
+     */
 
     /**
-      * Specifies a link target.
-      *
-      * Example:
-      *
-      *     <core-item icon="favorite" label="Favorite" href="http://www.polymer-project.org/"></core-item>
-      *
-      * If you want more control on the link, e.g. specify the target for where to
-      * open the linked document, you can put &lt;a> directly inside the item.
-      *
-      * Example:
-      *
-      *     <core-item icon="favorite" label="Favorite">
-      *       <a href="http://www.polymer-project.org/" target="_self"></a>
-      *     </core-item>
-      *
-      * @attribute href
-      * @type string
-      * @default ''
-      */
+     * Specifies the icon from the Polymer icon set.
+     *
+     * @attribute icon
+     * @type string
+     * @default ''
+     */
 
     /**
-      * Specifies the label for the menu item.
-      *
-      * @attribute label
-      * @type string
-      * @default ''
-      */
-    label: '',
+     * Specifies a link target.
+     *
+     * Example:
+     *
+     *     <core-item icon="favorite" label="Favorite" href="http://www.polymer-project.org/"></core-item>
+     *
+     * If you want more control on the link, e.g. specify the target for where to
+     * open the linked document, you can put &lt;a> directly inside the item.
+     *
+     * Example:
+     *
+     *     <core-item icon="favorite" label="Favorite">
+     *       <a href="http://www.polymer-project.org/" target="_self"></a>
+     *     </core-item>
+     *
+     * @attribute href
+     * @type string
+     * @default ''
+     */
 
-    // calc item's offset middle pos instead of using offsetTop/Height 
-    // directly which requires to wait for submenu's collapsing transition to 
-    // complete first before it can return the correct pos.
-    getOffsetMiddle: function() {
-      var p = this.parentNode;
-      if (p) {
-        var i = Array.prototype.indexOf.call(p.items, this);
-        var h = this.getItemHeight();
-        return i * h + h/2 + p.items[0].offsetTop;
-      }
-    },
-
-    getItemHeight: function() {
-      return this.offsetHeight;
-    }
+    /**
+     * Specifies the label for the menu item.
+     *
+     * @attribute label
+     * @type string
+     * @default ''
+     */
 
   });
 

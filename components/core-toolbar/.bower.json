@@ -3,15 +3,14 @@
   "private": true,
   "dependencies": {
     "core-theme-aware": "Polymer/core-theme-aware#master",
-    "core-media-query": "Polymer/core-media-query#master",
     "core-layout": "Polymer/core-layout#master"
   },
   "homepage": "https://github.com/Polymer/core-toolbar",
-  "_release": "f07b1312aa",
+  "_release": "756a2968dd",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "f07b1312aa6f9697e048d81cc37b8e37b6beb245"
+    "commit": "756a2968dd9bfafe62be42ae9b360cec2bee3971"
   },
   "_source": "git://github.com/Polymer/core-toolbar.git",
   "_target": "master",

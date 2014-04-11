@@ -9,35 +9,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 :host { 
   display: block;
-  position: initial;
   height: auto;
-  line-height: auto;
-  font-size: inherit;
-  padding: initial;
-  border: initial;
-  border-radius: initial;
-  opacity: initial;
 }
 
-:host(:hover, .core-selected, [active]) {
-  opacity: initial;
+:host(.core-selected, [active]) {
+  font-weight: initial;
 }
 
-:host(.core-light-theme.core-selected, 
-      .core-light-theme[active], 
-      .core-dark-theme, 
-      .core-dark-theme:hover, 
-      .core-dark-theme.core-selected, 
-      .core-dark-theme[active], 
-      [active].no-active-bg) {
-  background: initial;
-  border: initial;
-  color: initial;
-}
-
-#menu {
-  margin-left: 44px;
-  height: 0;
-  background-image: none !important;
-  padding: 0 !important;
+#submenu {
+  margin: 0 0 0 44px;
 }

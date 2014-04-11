@@ -3,15 +3,14 @@
   "private": true,
   "dependencies": {
     "core-selector": "Polymer/core-selector#master",
-    "core-theme-aware": "Polymer/core-theme-aware#master",
     "core-collapse": "Polymer/core-collapse#master"
   },
   "homepage": "https://github.com/Polymer/core-menu",
-  "_release": "dc709d0acf",
+  "_release": "51c7c7e358",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "dc709d0acfa5ca87f4f0060af6fe50960321e3d4"
+    "commit": "51c7c7e3586b5973926f2a5f405bf1e4ca54cb5c"
   },
   "_source": "git://github.com/Polymer/core-menu.git",
   "_target": "master",
