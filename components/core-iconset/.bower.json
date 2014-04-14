@@ -6,11 +6,11 @@
     "core-meta": "Polymer/core-meta#master"
   },
   "homepage": "https://github.com/Polymer/core-iconset",
-  "_release": "ba4def0f11",
+  "_release": "9054477ae4",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "ba4def0f11aa6074e5e9549e1d97e06ef3dbf9f3"
+    "commit": "9054477ae427ff12c708591f3755e56c65b8a62d"
   },
   "_source": "git://github.com/Polymer/core-iconset.git",
   "_target": "master",

@@ -27,8 +27,9 @@ Example:
 -->
 
 <link rel="import" href="../core-icon/core-icon.html">
+<link rel="import" href="../core-theme-aware/core-theme-aware.html">
 
-<polymer-element name="core-item" attributes="label icon src href">
+<polymer-element name="core-item" extends="core-theme-aware" attributes="label icon src href">
 <template>
 
   <link rel="stylesheet" href="core-item.css">

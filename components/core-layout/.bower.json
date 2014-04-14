@@ -5,11 +5,11 @@
     "polymer": "Polymer/polymer#master"
   },
   "homepage": "https://github.com/Polymer/core-layout",
-  "_release": "a5cfc2e217",
+  "_release": "e71463fc01",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "a5cfc2e2174f7ae3c0a7a9c792b28c0bd06c6626"
+    "commit": "e71463fc014a08fb2594e3232934acd8a96d01a6"
   },
   "_source": "git://github.com/Polymer/core-layout.git",
   "_target": "master",

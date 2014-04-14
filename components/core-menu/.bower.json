@@ -6,11 +6,11 @@
     "core-collapse": "Polymer/core-collapse#master"
   },
   "homepage": "https://github.com/Polymer/core-menu",
-  "_release": "51c7c7e358",
+  "_release": "83936e2dbc",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "51c7c7e3586b5973926f2a5f405bf1e4ca54cb5c"
+    "commit": "83936e2dbc17e2d3fc4ea42b92716aa8554e0579"
   },
   "_source": "git://github.com/Polymer/core-menu.git",
   "_target": "master",

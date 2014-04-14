@@ -54,7 +54,7 @@ You can override the margin by doing:
     <content></content>
   </core-menu>
 
-  <core-collapse targetId="submenu" closed="{{collapsed}}"></core-collapse>
+  <core-collapse target="{{$.submenu}}" opened="{{opened}}"></core-collapse>
 
 </template>
 <script>
@@ -62,7 +62,7 @@ You can override the margin by doing:
   Polymer('core-submenu', {
 
     active: false,
-    collapsed: true,
+    opened: false,
 
     get items() {
       return this.$.submenu.items;
@@ -79,18 +79,21 @@ You can override the margin by doing:
 
     activeChanged: function() {
       if (this.hasItems()) {
-        this.collapsed = !this.active;
+        this.opened = this.active;
       }
       if (!this.active) {
         this.unselectAllItems();
       }
     },
+    
+    toggle: function() {
+      this.opened = !this.opened;
+    },
 
     activate: function() {
       if (this.hasItems() && this.active) {
-        this.collapsed = !this.collapsed;
+        this.toggle();
         this.unselectAllItems();
-        this.fire("core-select", {isSelected: true, item: this});
       }
     }
     
