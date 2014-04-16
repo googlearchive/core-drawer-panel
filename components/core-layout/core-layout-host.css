@@ -15,7 +15,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   display: flex !important;
 }
   
-:host([core-flow=h]) {
+:host(.core-h) {
   -webkit-box-orient: horizontal;
   -ms-flex-direction: row;
   -moz-flex-direction: row;
@@ -23,7 +23,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   flex-direction: row;
 }
   
-:host([core-flow=v]) {
+:host(.core-v) {
   -webkit-box-orient: vertical;
   -ms-flex-direction: column;
   -moz-flex-direction: column;
@@ -31,7 +31,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   flex-direction: column;
 }
 
-:host([core-flow=h][core-reverse]) {
+:host(.core-h.core-reverse) {
   -webkit-box-direction: reverse;
   -ms-flex-direction: row-reverse;
   -moz-flex-direction: row-reverse;
@@ -39,7 +39,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   flex-direction: row-reverse;
 }
   
-:host([core-flow=v][core-reverse]) {
+:host(.core-v.core-reverse) {
   -webkit-box-direction: reverse;
   -ms-flex-direction: column-reverse;
   -moz-flex-direction: column-reverse;
@@ -48,7 +48,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 }
 
 /* alignment in main axis */
-:host([core-justify=start]) {
+:host(.core-justify-start) {
   -webkit-box-pack: start;
   -ms-flex-pack: start;
   -moz-justify-content: flex-start;
@@ -56,7 +56,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   justify-content: flex-start;
 }
 
-:host([core-justify=center]) {
+:host(.core-justify-center) {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -moz-justify-content: center;
@@ -64,7 +64,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   justify-content: center;
 }
 
-:host([core-justify=end]) {
+:host(.core-justify-end) {
   -webkit-box-pack: end;
   -ms-flex-pack: end;
   -moz-justify-content: flex-end;
@@ -72,7 +72,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   justify-content: flex-end;
 }
 
-:host([core-justify=between]) {
+:host(.core-justify-between) {
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   -moz-justify-content: space-between;
@@ -81,7 +81,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 }
 
 /* alignment in cross axis */
-:host([core-align=start]) {
+:host(.core-align-start) {
   -webkit-box-align: start;
   -ms-flex-align: start;
   -moz-align-items: flex-start;
@@ -89,7 +89,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   align-items: flex-start;
 }
 
-:host([core-align=center]) {
+:host(.core-align-center) {
   -webkit-box-align: center;
   -ms-flex-align: center;
   -moz-align-items: center;
@@ -97,7 +97,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   align-items: center;
 }
   
-:host([core-align=end]) {
+:host(.core-align-end) {
   -webkit-box-align: end;
   -ms-flex-align: end;
   -moz-align-items: flex-end;

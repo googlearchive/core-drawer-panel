@@ -35,13 +35,13 @@ Example:
   <link rel="stylesheet" href="core-item.css">
   <link rel="stylesheet" href="../core-layout/core-layout.css">
   
-  <div class="item-container" core-flow core-align="center">
+  <div class="item-container core-h core-align-center">
   
     <template if="{{icon || src}}">
       <core-icon src="{{src}}" icon="{{icon}}"></core-icon>
     </template>
     
-    <span id="label" core-flex core-flow core-align="center">{{label}}<content></content></span>
+    <span id="label" core-flex class="core-h core-align-center">{{label}}<content></content></span>
     
     <template if="{{href}}">
       <a id="link" href="{{href}}"></a>

@@ -6,11 +6,11 @@
   <script src="../platform/platform.js"></script>
   <link rel="import" href="core-layout.html">
   <style>
-    [scroll] {
+    .scroll {
       overflow: auto;
     }
 
-    [content] {
+    .content {
       height: 2000px;
     }
 
@@ -20,11 +20,11 @@
     }
   </style>
 </head>
-<body is="polymer-body" core-fit unresolved>
-  <core-layout flow="v"></core-layout>
+<body is="polymer-body" class="core-fit" unresolved>
+  <core-layout vertical></core-layout>
   <div>Header</div>
-  <div scroll core-flex>
-    <section content></section>
+  <div class="scroll core-flex">
+    <section class="content"></section>
   </div>
   <div>Footer</div>
 </body>

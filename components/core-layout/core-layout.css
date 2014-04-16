@@ -4,7 +4,7 @@ Use of this source code is governed by a BSD-style
 license that can be found in the LICENSE file.
 */
 
-[core-flow] {
+.core-h, .core-v {
   display: -webkit-box !important;
   display: -ms-flexbox !important;
   display: -moz-flex !important;
@@ -12,7 +12,7 @@ license that can be found in the LICENSE file.
   display: flex !important;
 }
 
-[core-flow=h] {
+.core-h {
   -webkit-box-orient: horizontal;
   -ms-flex-direction: row;
   -moz-flex-direction: row;
@@ -20,7 +20,7 @@ license that can be found in the LICENSE file.
   flex-direction: row;
 }
 
-[core-flow=h][core-reverse] {
+.core-h.core-reverse {
   -webkit-box-direction: reverse;
   -ms-flex-direction: row-reverse;
   -moz-flex-direction: row-reverse;
@@ -28,7 +28,7 @@ license that can be found in the LICENSE file.
   flex-direction: row-reverse;
 }
 
-[core-flow=v] {
+.core-v {
   -webkit-box-orient: vertical;
   -ms-flex-direction: column;
   -moz-flex-direction: column;
@@ -36,7 +36,7 @@ license that can be found in the LICENSE file.
   flex-direction: column;
 }
 
-[core-flow=v][core-reverse] {
+.core-v.core-reverse {
   -webkit-box-direction: reverse;
   -ms-flex-direction: column-reverse;
   -moz-flex-direction: column-reverse;
@@ -44,11 +44,11 @@ license that can be found in the LICENSE file.
   flex-direction: column-reverse;
 }
 
-[core-relative] {
+.core-relative {
   position: relative;
 }
 
-[core-fit] {
+.core-fit {
   position: absolute;
   top: 0;
   left: 0;
@@ -56,11 +56,11 @@ license that can be found in the LICENSE file.
   width: 100%;
 }
 
-body[core-fit] {
+body.core-fit {
   margin: 0;
 }
 
-[core-flex] {
+.core-flex, [core-flex] {
   -webkit-box-flex: 1;
   -ms-flex: 1;
   -moz-flex: 1;
@@ -68,7 +68,23 @@ body[core-fit] {
   flex: 1;
 }
 
-[core-flex=1] {
+.core-flex-auto, [core-flex-auto] {
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  -moz-flex: 1 1 auto;
+  -webkit-flex: 1 1 auto;
+  flex: 1 1 auto;
+}
+
+.core-flex-none, [core-flex-none] {
+  -webkit-box-flex: none;
+  -ms-flex: none;
+  -moz-flex: none;
+  -webkit-flex: none;
+  flex: none;
+}
+
+.core-flex1, [core-flex=1] {
   -webkit-box-flex: 1;
   -ms-flex: 1;
   -moz-flex: 1;
@@ -76,7 +92,7 @@ body[core-fit] {
   flex: 1;
 }
 
-[core-flex=2] {
+.core-flex2, [core-flex=2] {
   -webkit-box-flex: 2;
   -ms-flex: 2;
   -moz-flex: 2;
@@ -84,32 +100,16 @@ body[core-fit] {
   flex: 2;
 }
 
-[core-flex=3] {
+.core-flex3, [core-flex=3] {
   -webkit-box-flex: 3;
   -ms-flex: 3;
   -moz-flex: 3;
   -webkit-flex: 3;
   flex: 3;
-}
-
-[core-flex=4] {
-  -webkit-box-flex: 4;
-  -ms-flex: 4;
-  -moz-flex: 4;
-  -webkit-flex: 4;
-  flex: 4;
-}
-
-[core-flex=5] {
-  -webkit-box-flex: 5;
-  -ms-flex: 5;
-  -moz-flex: 5;
-  -webkit-flex: 5;
-  flex: 5;
 }
 
 /* distributed elements */
-::content > [core-flex] {
+::content > .core-flex, ::content > [core-flex] {
   -webkit-box-flex: 1;
   -ms-flex: 1;
   -moz-flex: 1;
@@ -117,7 +117,23 @@ body[core-fit] {
   flex: 1;
 }
 
-::content > [core-flex=1] {
+::content > .core-flex-auto, ::content > [core-flex-auto] {
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  -moz-flex: 1 1 auto;
+  -webkit-flex: 1 1 auto;
+  flex: 1 1 auto;
+}
+
+::content > .core-flex-none, ::content > [core-flex-none] {
+  -webkit-box-flex: none;
+  -ms-flex: none;
+  -moz-flex: none;
+  -webkit-flex: none;
+  flex: none;
+}
+
+::content > .core-flex1, ::content > [core-flex=1] {
   -webkit-box-flex: 1;
   -ms-flex: 1;
   -moz-flex: 1;
@@ -125,7 +141,7 @@ body[core-fit] {
   flex: 1;
 }
 
-::content > [core-flex=2] {
+::content > .core-flex2, ::content > [core-flex=2] {
   -webkit-box-flex: 2;
   -ms-flex: 2;
   -moz-flex: 2;
@@ -133,7 +149,7 @@ body[core-fit] {
   flex: 2;
 }
 
-::content > [core-flex=3] {
+::content > .core-flex3, ::content > [core-flex=3] {
   -webkit-box-flex: 3;
   -ms-flex: 3;
   -moz-flex: 3;
@@ -141,24 +157,8 @@ body[core-fit] {
   flex: 3;
 }
 
-::content > [core-flex=4] {
-  -webkit-box-flex: 4;
-  -ms-flex: 4;
-  -moz-flex: 4;
-  -webkit-flex: 4;
-  flex: 4;
-}
-
-::content > [core-flex=5] {
-  -webkit-box-flex: 5;
-  -ms-flex: 5;
-  -moz-flex: 5;
-  -webkit-flex: 5;
-  flex: 5;
-}
-
 /* alignment in main axis */
-[justify=start] {
+.core-justify-start {
   -webkit-box-pack: start;
   -ms-flex-pack: start;
   -moz-justify-content: flex-start;
@@ -166,7 +166,7 @@ body[core-fit] {
   justify-content: flex-start;
 }
 
-[core-justify=center] {
+.core-justify-center {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -moz-justify-content: center;
@@ -174,7 +174,7 @@ body[core-fit] {
   justify-content: center;
 }
 
-[core-justify=end] {
+.core-justify-end {
   -webkit-box-pack: end;
   -ms-flex-pack: end;
   -moz-justify-content: flex-end;
@@ -182,7 +182,7 @@ body[core-fit] {
   justify-content: flex-end;
 }
 
-[core-justify=between] {
+.core-justify-between {
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   -moz-justify-content: space-between;
@@ -191,7 +191,7 @@ body[core-fit] {
 }
 
 /* alignment in cross axis */
-[core-align=start] {
+.core-align-start {
   -webkit-box-align: start;
   -ms-flex-align: start;
   -moz-align-items: flex-start;
@@ -199,7 +199,7 @@ body[core-fit] {
   align-items: flex-start;
 }
 
-[core-align=center] {
+.core-align-center {
   -webkit-box-align: center;
   -ms-flex-align: center;
   -moz-align-items: center;
@@ -207,7 +207,7 @@ body[core-fit] {
   align-items: center;
 }
 
-[core-align=end] {
+.core-align-end {
   -webkit-box-align: end;
   -ms-flex-align: end;
   -moz-align-items: flex-end;

@@ -37,12 +37,6 @@ When taller, actions can pin to either the top (default), middle or bottom.
       <div class="middle">Toolbar</div>
     </core-toolbar>
 
-Apply `seamed` class to remove the drop shadow.
-
-    <core-toolbar class="seamed">
-      <core-icon-button icon="menu"></core-icon-button>
-    </core-toolbar>
-
 @group Polymer Core Elements
 @element core-toolbar
 @homepage github.io
@@ -56,15 +50,15 @@ Apply `seamed` class to remove the drop shadow.
   <link rel="stylesheet" href="core-toolbar.css">
   <link rel="stylesheet" href="../core-layout/core-layout.css">
 
-  <div class="toolbar-tools-bottom" core-flow core-align="center">
+  <div class="toolbar-tools-bottom core-h core-align-center">
     <content select=".bottom"></content>
   </div>
   
-  <div class="toolbar-tools-middle" core-flow core-align="center">
+  <div class="toolbar-tools-middle core-h core-align-center">
     <content select=".middle"></content>
   </div>
 
-  <div class="toolbar-tools" core-flow core-align="center">
+  <div class="toolbar-tools core-h core-align-center">
     <content></content>
   </div>
 

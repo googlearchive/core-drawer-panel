@@ -145,138 +145,148 @@ You may also use the `core-layout` stylesheet directly:
     ---------------------------------
 
 @element core-layout
--->
 
+-->
+<--
+ If true, the host element of the core-layout element becomes a 
+ flexbox. Apply additional layout classes to the host element to customize
+ its styling.
+ 
+ @attribute host
+ @type boolean
+ @default false
+-->
 <link rel="import" href="../polymer/polymer.html">
 
-<polymer-element name="core-layout" attributes="flow justify align isContainer">
-<template>
+<polymer-element name="core-layout" attributes="vertical justify align isContainer reverse">
+  
+  <template>
+  
+    <link no-shim rel="stylesheet" href="core-layout.css">
+    <link no-shim rel="stylesheet" href="core-layout-host.css">
+  
+  </template>
+  
+  <script>
+  
+  (function() {
+  
+    Polymer('core-layout', {
 
-  <link no-shim rel="stylesheet" href="core-layout.css">
-  <link no-shim rel="stylesheet" href="core-layout-host.css">
-
-</template>
-<script>
-
-  Polymer('core-layout', {
-    /**
-      * If true, the host element of the core-layout element becomes a 
-      * flexbox. Apply additional layout classes to the host element to customize
-      * its styling.
-      * 
-      * @attribute host
-      * @type boolean
-      * @default false
-      */
-
-    /**
-      * Controls how the element lays out or flows. Set to `h` for a 
-      * horizontal flow or `v` for a vertical flow. 
-      *
-      * @attribute flow
-      * @type string h|v
-      * @default ''
-      */
-    flow: '',
-
-    /**
-      * Controls how the items are aligned in the flow direction. For 
-      * example for a flow of `h`, this controls how each item is aligned
-      * horizontally.
-      *
-      * @attribute justify
-      * @type string start|center|end|between
-      * @default ''
-      */
-    justify: '',
-
-    /**
-      * Controls how the items are aligned in cross-flow direction. For 
-      * example for a flow of `h`, this controls how each item is aligned
-      * vertically.
-      *
-      * @attribute align
-      * @type string start|center|end
-      * @default ''
-      */
-    align: '',
-
-    /**
-      * Controls whether or not the items layout in reverse order.
-      *
-      * @attribute reverse
-      * @type boolean
-      * @default false
-      */
-    reverse: false,
-
-    isContainer: false,
-
-    layoutPrefix: 'core-',
-
-    // NOTE: include template so that styles are loaded, but remove
-    // so that we can decide dynamically what part to include
-    registerCallback: function(polymerElement) {
-      var template = polymerElement.querySelector('template');
-      this.styles = template.content.querySelectorAll('style').array();
-      this.styles.forEach(function(s) {
-        s.removeAttribute('no-shim');
-      })
-    },
-
-    fetchTemplate: function() {
-      return null;
-    },
-
-    attached: function() {
-      this.installScopeStyle(this.styles[0]);
-      if (this.children.length) {
-        this.isContainer = true;
-      }
-      var container = this.isContainer ? this : this.parentNode;  
-      // detect if laying out a shadowRoot host.
-      var forHost = container instanceof ShadowRoot;
-      if (forHost) {
-        this.installScopeStyle(this.styles[1], 'host');
-        container = container.host || document.body;
-      }
-      this.layoutContainer = container;
-    },
-
-    detached: function() {
-      this.layoutContainer = null;
-    },
-
-    layoutContainerChanged: function(old) {
-      this.style.display = this.layoutContainer === this ? null : 'none';
-      this.flowChanged();
-      this.alignChanged();
-      this.justifyChanged();
-    },
-
-    setLayoutAttribute: function(name, value) {
-      if (this.layoutContainer && name) {
-        if (value) {
-          this.layoutContainer.setAttribute(this.layoutPrefix + name, value);
-        } else {
-          this.layoutContainer.removeAttribute(name);
+      isContainer: false,
+      /**
+       * Controls if the element lays out vertically or not.
+       *
+       * @attribute vertical
+       * @type boolean
+       * @default false
+       */
+      vertical: false,
+      /**
+       * Controls how the items are aligned in the flow direction. For 
+       * example for a flow of `h`, this controls how each item is aligned
+       * horizontally.
+       *
+       * @attribute justify
+       * @type string start|center|end|between
+       * @default ''
+       */
+      justify: '',
+      /**
+       * Controls how the items are aligned in cross-flow direction. For 
+       * example for a flow of `h`, this controls how each item is aligned
+       * vertically.
+       *
+       * @attribute align
+       * @type string start|center|end
+       * @default ''
+       */
+      align: '',
+      /**
+       * Controls whether or not the items layout in reverse order.
+       *
+       * @attribute reverse
+       * @type boolean
+       * @default false
+       */
+      reverse: false,
+      layoutPrefix: 'core-',
+  
+      // NOTE: include template so that styles are loaded, but remove
+      // so that we can decide dynamically what part to include
+      registerCallback: function(polymerElement) {
+        var template = polymerElement.querySelector('template');
+        this.styles = template.content.querySelectorAll('style').array();
+        this.styles.forEach(function(s) {
+          s.removeAttribute('no-shim');
+        })
+      },
+  
+      fetchTemplate: function() {
+        return null;
+      },
+  
+      attached: function() {
+        this.installScopeStyle(this.styles[0]);
+        if (this.children.length) {
+          this.isContainer = true;
         }
+        var container = this.isContainer ? this : this.parentNode;  
+        // detect if laying out a shadowRoot host.
+        var forHost = container instanceof ShadowRoot;
+        if (forHost) {
+          this.installScopeStyle(this.styles[1], 'host');
+          container = container.host || document.body;
+        }
+        this.layoutContainer = container;
+      },
+
+      detached: function() {
+        this.layoutContainer = null;
+      },
+
+      layoutContainerChanged: function(old) {
+        this.style.display = this.layoutContainer === this ? null : 'none';
+        this.verticalChanged();
+        this.alignChanged();
+        this.justifyChanged();
+      },
+
+      setLayoutClass: function(prefix, old, newValue) {
+        if (this.layoutContainer) {
+          prefix = this.layoutPrefix + prefix;
+          if (old) {
+            this.layoutContainer.classList.remove(prefix + old);
+          }
+          if (newValue) {
+            this.layoutContainer.classList.add(prefix + newValue);
+          }
+        }
+      },
+
+      verticalChanged: function(old) {
+        old = old ? 'column' : 'row';
+        var vertical = this.vertical ? 'v' : 'h';
+        this.setLayoutClass('', old, vertical);
+      },
+
+      alignChanged: function(old) {
+        this.setLayoutClass('align-', old, this.align);
+      },
+
+      justifyChanged: function(old) {
+        this.setLayoutClass('justify-', old, this.justify);
+      },
+
+      reverseChanged: function(old) {
+        old = old ? 'reverse' : '';
+        var newValue = this.reverse ? 'reverse' : '';
+        this.setLayoutClass('', old, newValue);
       }
-    },
 
-    flowChanged: function() {
-      this.setLayoutAttribute('flow', this.flow || 'h');
-    },
+    });
 
-    alignChanged: function() {
-      this.setLayoutAttribute('align', this.align);
-    },
+  })();
+  </script>
 
-    justifyChanged: function() {
-      this.setLayoutAttribute('justify', this.justify);
-    }
-
-  });
-
-</script>
 </polymer-element>
