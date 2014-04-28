@@ -31,9 +31,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <polymer-element name="layout-demo" noscript>
     <template>
       <style>
-        div {
-          box-sizing: border-box;
-          -moz-box-sizing: border-box;
+        div, core-layout {
+          box-sizing: border-flow;
+          -moz-flow-sizing: border-flow;
           border: 2px solid #ccc;
         }
 
@@ -50,29 +50,28 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           border: none;
         }
       </style>
-      <link rel="stylesheet" href="core-layout.css">
-      <link rel="stylesheet" href="core-layout-host.css">
-      <div class="core-flex core-h">
+      <core-layout></core-layout>
+      <core-layout core-flex>
         <div>Hi I'm some content</div>
-        <div class="core-flex core-v">
-          <div class="core-h core-align-center">
+        <core-layout core-flex vertical>
+          <core-layout align="center">
             <h3>Title</h3>
             <button>hello</button>
-          </div>
-          <div class="core-flex core-h">
-            <div class="core-flex core-relative">
+          </core-layout>
+          <core-layout core-flex>
+            <div core-flex class="core-relative">
               Main content
               <div class="abs">abs pos :)</div>
             </div>
             <div>Sidebar content</div>
-          </div>
+          </core-layout>
           <div>Some more stuffs...</div>
-          <div class="core-h core-justify-end">
+          <core-layout justify="end">
             <b>Footer</b>
-          </div>
-        </div>
+          </core-layout>
+        </core-layout>
         <div>A last bit, like a panel</div>
-      </div>
+      </core-layout>
     </template>
   </polymer-element>
 
