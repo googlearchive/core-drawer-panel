@@ -9,14 +9,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 <html>
 <head>
-
   <title>core-toolbar</title>
 
   <script src="../platform/platform.js"></script>
 
   <link rel="import" href="core-toolbar.html">
+  <link rel="import" href="../core-icon-button/core-icon-button.html">
 
-  <style>
+  <style shim-shadowdom>
 
     body {
       font-family: sans-serif;
@@ -26,67 +26,82 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       background-color: #CFA0E9;
     }
 
-    core-toolbar.core-dark-theme {
+    core-toolbar.dark-theme {
       background-color: #7D25AC;
+      color: #f1f1f1;
+      fill: #f1f1f1;
     }
     
-    .menu-icon {
-      width: 24px;
-      height: 24px;
-      background-image: url(http://www.polymer-project.org/images/picons/ic_menu_light_.png);
-      background-size: 48px;
-      background-position: 50% 50%;
-    }
-
   </style>
 
 </head>
 <body unresolved>
 
   <core-toolbar>
-    <div class="menu-icon"></div>
-    <span core-flex>Toolbar: light-theme (default)</span>
+    <core-icon-button icon="menu"></core-icon-button>
+    <span flex>Toolbar</span>
+    <core-icon-button icon="refresh"></core-icon-button>
+    <core-icon-button icon="add"></core-icon-button>
   </core-toolbar>
 
   <br>
 
-  <core-toolbar theme="core-dark-theme">
-    <div class="menu-icon"></div>
-    <span core-flex>Toolbar: dark-theme</span>
+  <core-toolbar class="dark-theme">
+    <core-icon-button icon="menu"></core-icon-button>
+    <span flex>Toolbar: dark-theme</span>
+    <core-icon-button icon="refresh"></core-icon-button>
+    <core-icon-button icon="add"></core-icon-button>
   </core-toolbar>
 
   <br>
 
   <core-toolbar class="tall">
-    <div class="menu-icon"></div>
-    <span core-flex>Toolbar: tall</span>
+    <core-icon-button icon="menu"></core-icon-button>
+    <span flex>Toolbar: tall</span>
+    <core-icon-button icon="refresh"></core-icon-button>
+    <core-icon-button icon="add"></core-icon-button>
   </core-toolbar>
 
   <br>
 
   <core-toolbar class="tall">
-    <div class="menu-icon"></div>
-    <span core-flex class="bottom indent">Toolbar: tall with actions pin to the bottom</span>
+    <core-icon-button icon="menu" class="bottom"></core-icon-button>
+    <span flex class="bottom">Toolbar: tall with elements pin to the bottom</span>
+    <core-icon-button icon="refresh" class="bottom"></core-icon-button>
+    <core-icon-button icon="add" class="bottom"></core-icon-button>
   </core-toolbar>
   
   <br>
   
   <core-toolbar class="medium-tall">
-    <div class="menu-icon"></div>
-    <span core-flex></span>
-    <span class="bottom indent">Toolbar: medium tall with label aligns to the bottom</span>
+    <core-icon-button icon="menu"></core-icon-button>
+    <span flex></span>
+    <core-icon-button icon="refresh"></core-icon-button>
+    <core-icon-button icon="add"></core-icon-button>
+    <span class="bottom indent">Toolbar: medium-tall with label aligns to the bottom</span>
   </core-toolbar>
 
   <br>
   
   <core-toolbar class="tall">
-    <div class="menu-icon"></div>
-    <div core-flex></div>
-    <div core-flex class="middle indent">Toolbar: label aligns to the middle</div>
-    <div core-flex class="bottom indent" style="color: #666; font-size: 18px;">some stuffs align to the bottom</div>
+    <core-icon-button icon="menu"></core-icon-button>
+    <div flex></div>
+    <core-icon-button icon="refresh"></core-icon-button>
+    <core-icon-button icon="add"></core-icon-button>
+    <div class="middle indent">label aligns to the middle</div>
+    <div class="bottom indent" style="color: #666; font-size: 18px;">some stuffs align to the bottom</div>
   </core-toolbar>
   
   <br>
-
+  
+  <core-toolbar class="tall">
+    <core-icon-button icon="menu"></core-icon-button>
+    <div flex></div>
+    <core-icon-button icon="refresh"></core-icon-button>
+    <core-icon-button icon="add"></core-icon-button>
+    <div class="middle indent">element (e.g. progress) fits at the bottom of the toolbar</div>
+    <div class="bottom fit" style="height: 20px; background-color: #0f9d58;"></div>
+  </core-toolbar>
+  
 </body>
 </html>

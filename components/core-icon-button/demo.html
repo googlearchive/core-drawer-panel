@@ -19,41 +19,33 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   
   <body unresolved>
   
+
+    <polymer-element name="x-buttons">
+      <template>
+        <core-iconset id="meta"></core-iconset>
+        <template repeat="{{icon in iconNames}}">
+          <core-icon-button icon="{{icon}}"></core-icon-button>
+        </template>
+      </template>
+      <script>
+        Polymer('x-buttons', {
+          ready: function() {
+            this.iconNames = this.$.meta.byId('icons').iconNames;
+          }
+        });
+      </script>
+    </polymer-element>
+
     <div>
-      <core-icon-button icon="drawer"></core-icon-button>
-      <core-icon-button icon="menu"></core-icon-button>
-      <core-icon-button icon="search"></core-icon-button>
-      <core-icon-button icon="dropdown"></core-icon-button>
-      <core-icon-button icon="close"></core-icon-button>
-      <core-icon-button icon="add"></core-icon-button>
-      <core-icon-button icon="trash"></core-icon-button>
-      <core-icon-button icon="settings"></core-icon-button>
-      <core-icon-button icon="dialog"></core-icon-button>
+      <x-buttons></x-buttons>
     </div>
-    
+    <br>
     <div theme="core-light-theme">
-      <core-icon-button icon="drawer"></core-icon-button>
-      <core-icon-button icon="menu"></core-icon-button>
-      <core-icon-button icon="search"></core-icon-button>
-      <core-icon-button icon="dropdown"></core-icon-button>
-      <core-icon-button icon="close"></core-icon-button>
-      <core-icon-button icon="add"></core-icon-button>
-      <core-icon-button icon="trash"></core-icon-button>
-      <core-icon-button icon="settings"></core-icon-button>
-      <core-icon-button icon="dialog"></core-icon-button>
+      <x-buttons></x-buttons>
     </div>
-    
+    <br>
     <div theme="core-dark-theme" style="background: #333;">
-      <core-icon-button icon="drawer"></core-icon-button>
-      <core-icon-button icon="menu"></core-icon-button>
-      <core-icon-button icon="search"></core-icon-button>
-      <core-icon-button icon="dropdown"></core-icon-button>
-      <core-icon-button icon="close"></core-icon-button>
-      <core-icon-button icon="add"></core-icon-button>
-      <core-icon-button icon="trash"></core-icon-button>
-      <core-icon-button icon="settings"></core-icon-button>
-      <core-icon-button icon="dialog"></core-icon-button>
+      <x-buttons></x-buttons>
     </div>
-    
   </body>
 </html>

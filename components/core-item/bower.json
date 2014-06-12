@@ -3,7 +3,6 @@
   "private": true,
   "dependencies": {
     "core-icon": "Polymer/core-icon#master",
-    "core-theme-aware": "Polymer/core-theme-aware#master",
-    "core-layout": "Polymer/core-layout#master"
+    "core-icons": "Polymer/core-icons#master"
   }
 }
