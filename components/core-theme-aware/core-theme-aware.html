@@ -10,6 +10,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <!--
 @group Polymer Core Elements
 
+<b>Note</b>: `core-theme-aware` uses the `Polymer.ThemeAware` mixin. Refer to the [Polymer.ThemeAware API](#Polymer.ThemeAware) documentation for more information on how to do theming.
+
+---
+
 The `core-theme-aware` element is a base element which can be 
 extended to create elements that can support theming. This element applies
 no styling itself; instead it allows the author to create styles that 
@@ -24,10 +28,8 @@ This means an author can create a set of elements that support a particular
 theme, and the user of that set can, for example, set a theme attribute
 on the body element to apply that theme inside the body element. The 
 `core-theme-aware` element also supports nested theming. For example,
-the body element might be given theme="standard" but a particuarly subtree
-could be given a theme="different".
-
-`core-theme-aware` uses the [Polymer.ThemeAware](#Polymer.ThemeAware) mixin.
+the body element might be given `theme="standard"` but a particularly subtree
+could be given a `theme="different"`.
 
 Example:
 
@@ -35,62 +37,23 @@ Example:
 
       <core-theme-aware> 
         auto-styled with class="pretty" as a result of the containing theme
-      <core-theme-aware>
+      </core-theme-aware>
 
       <section theme="different">
 
         <core-theme-aware> 
           auto-styled with class="different" as a result of the containing theme
-        <core-theme-aware>
+        </core-theme-aware>
 
       </section>
 
     </body>
 
-@class core-theme-aware
+@element core-theme-aware
 @status beta
 @homepage github.io
-
 -->
 
-<!--
- // NOTE: Polymer.ThemeAware methods separately documented so they can be part
- // of core-theme-aware.
- /**
-   * When no theme is specified, the value `defaultTheme` will be applied
-   * as the theme class.
-   * This is not typically intended for a user to set but is 
-   * useful in an element that extends `core-theme-aware`.
-   * 
-   * @attribute defaultTheme
-   * @type string
-   * @default ''
-   */
-
-  /**
-   * The `activeTheme` property stores the current theme. When the activeTheme
-   * changes, the element's theme class is updated. An element can 
-   * implement the `activeThemeChanged` method to do processing when the
-   * theme changes.
-   *
-   * This is not typically intended for a user to set but is 
-   * useful in an element that extends `core-theme-aware`.
-   * 
-   * @attribute activeTheme
-   * @type string
-   * @default ''
-   */
-
-  /**
-   * The theme set by the user of the theme-aware element. The `theme`
-   * property will only be set if the user has specifically given the
-   * theme-aware element a theme attribute.
-   *
-   * @attribute theme
-   * @type string
-   * @default ''
-   */
--->
 <link rel="import" href="../polymer/polymer.html">
 
 <polymer-element name="core-theme-aware" attributes="theme">
