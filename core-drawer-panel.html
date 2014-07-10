@@ -40,7 +40,7 @@ To position the drawer to the right, add `right-drawer` to the class list.
 <link rel="import" href="../core-media-query/core-media-query.html">
 <link rel="import" href="../core-selector/core-selector.html">
 
-<polymer-element name="core-drawer-panel">
+<polymer-element name="core-drawer-panel" on-track="{{ track }}" on-trackStart="{{ trackStart }}" on-trackEnd="{{ trackEnd }}">
 <template>
 
   <link rel="stylesheet" href="core-drawer-panel.css">
@@ -114,6 +114,10 @@ To position the drawer to the right, add `right-drawer` to the class list.
     },
     
     transition: false,
+
+    moving : false,
+
+    edgeSwipeSensitivity : 15,
     
     domReady: function() {
       // to avoid transition at the beginning e.g. page loads
@@ -122,6 +126,68 @@ To position the drawer to the right, add `right-drawer` to the class list.
       this.async(function() {
         this.transition = true;
       });
+    },
+
+    ready : function() {
+      this.setAttribute('touch-action', 'none');
+    },
+
+    isRight : function() {
+      return (' ' + this.className + ' ').indexOf('right-drawer') > -1;
+    },
+
+    trackStart : function(e) {
+      if (this.narrow) {
+        this.moving = true;
+
+        if (this.selected === 'main') {
+          this.moving = this.isRight() ? e.pageX >= this.offsetWidth - this.edgeSwipeSensitivity :
+              e.pageX <= this.edgeSwipeSensitivity;
+        }
+
+        if (this.moving) {
+          this.width = this.$.drawer.offsetWidth;
+          this.transition = false;
+        }
+      }
+    },
+
+    track : function(e) {
+      if (this.narrow && this.moving) {
+        var drawerStyle = this.$.drawer.style;
+
+        var translateX;
+        if (this.isRight()) {
+          translateX = (this.selected === 'main') ? this.width + e.dx : e.dx;
+          translateX = translateX < 0 ? 0 : translateX;
+        }
+        else {
+          translateX = (this.selected === 'main') ? e.dx - this.width : e.dx;
+          translateX = translateX > 0 ? 0 : translateX;
+        }
+
+        drawerStyle.webkitTransform = drawerStyle.mozTransform =
+            drawerStyle.msTransform = drawerStyle.transform =
+                'translate3d(' + translateX + 'px,0,0)';
+      }
+
+    },
+
+    trackEnd : function(e) {
+      if (this.narrow && this.moving) {
+        this.transition = true;
+        this.moving = false;
+        var drawerStyle = this.$.drawer.style;
+        drawerStyle.webkitTransform = drawerStyle.mozTransform =
+            drawerStyle.msTransform = drawerStyle.transform = '';
+
+        if (this.isRight()) {
+          this.selected = e.xDirection > 0 ? 'main' : 'drawer';
+        }
+        else {
+          this.selected = e.xDirection > 0 ? 'drawer' : 'main';
+        }
+      }
     },
 
     togglePanel: function() {

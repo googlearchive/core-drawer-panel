@@ -146,7 +146,8 @@ polyfill-next-selector { content: ':host .narrow-layout > #drawer > [drawer]'; }
   padding: 0;
 }
 
-.narrow-layout > #main:not(.core-selected) #scrim {
+.narrow-layout > #main:not(.core-selected) #scrim,
+.moving #scrim {
   visibility: visible;
   opacity: 1;
 }
