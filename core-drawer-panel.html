@@ -128,10 +128,6 @@ To position the drawer to the right, add `right-drawer` to the class list.
       });
     },
 
-    ready : function() {
-      this.setAttribute('touch-action', 'none');
-    },
-
     isRight : function() {
       return (' ' + this.className + ' ').indexOf('right-drawer') > -1;
     },
@@ -187,6 +183,16 @@ To position the drawer to the right, add `right-drawer` to the class list.
         else {
           this.selected = e.xDirection > 0 ? 'drawer' : 'main';
         }
+      }
+    },
+
+    selectedChanged : function() {
+      if (this.selected === 'drawer') {
+        this.$.main.setAttribute('touch-action', 'none');
+        this.$.drawer.setAttribute('touch-action', 'pan-y')
+      }
+      else {
+        this.$.main.setAttribute('touch-action', 'pan-y');
       }
     },
 
