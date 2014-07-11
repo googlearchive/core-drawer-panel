@@ -189,7 +189,8 @@ To position the drawer to the right, add `right-drawer` to the class list.
     selectedChanged : function() {
       if (this.selected === 'drawer') {
         this.$.main.setAttribute('touch-action', 'none');
-        this.$.drawer.setAttribute('touch-action', 'pan-y')
+        this.$.drawer.setAttribute('touch-action', 'pan-y');
+        this.$.scrim.style.height = this.$.main.scrollHeight + 'px';
       }
       else {
         this.$.main.setAttribute('touch-action', 'pan-y');
