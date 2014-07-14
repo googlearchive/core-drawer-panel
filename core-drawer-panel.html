@@ -47,7 +47,7 @@ To position the drawer to the right, add `right-drawer` to the class list.
 
   <core-media-query query="max-width: {{responsiveWidth}}" queryMatches="{{queryMatches}}"></core-media-query>
 
-  <core-selector class="{{ {'narrow-layout' : queryMatches, transition : transition} | tokenList }}" valueattr="id" selected="{{selected}}">
+  <core-selector class="{{ {'narrow-layout' : queryMatches, transition : transition, moving : moving} | tokenList }}" valueattr="id" selected="{{selected}}">
 
     <div id="main" >
       <content select="[main]"></content>
@@ -166,16 +166,13 @@ To position the drawer to the right, add `right-drawer` to the class list.
             drawerStyle.msTransform = drawerStyle.transform =
                 'translate3d(' + translateX + 'px,0,0)';
       }
-
     },
 
     trackEnd : function(e) {
       if (this.narrow && this.moving) {
         this.transition = true;
         this.moving = false;
-        var drawerStyle = this.$.drawer.style;
-        drawerStyle.webkitTransform = drawerStyle.mozTransform =
-            drawerStyle.msTransform = drawerStyle.transform = '';
+
 
         if (this.isRight()) {
           this.selected = e.xDirection > 0 ? 'main' : 'drawer';
@@ -183,18 +180,37 @@ To position the drawer to the right, add `right-drawer` to the class list.
         else {
           this.selected = e.xDirection > 0 ? 'drawer' : 'main';
         }
+
+        this.openToSelected();
       }
     },
 
-    selectedChanged : function() {
+    openToSelected : function() {
+      var drawerStyle = this.$.drawer.style;
       if (this.selected === 'drawer') {
         this.$.main.setAttribute('touch-action', 'none');
         this.$.drawer.setAttribute('touch-action', 'pan-y');
         this.$.scrim.style.height = this.$.main.scrollHeight + 'px';
+
+        drawerStyle.webkitTransform = drawerStyle.mozTransform =
+            drawerStyle.msTransform = drawerStyle.transform = 'translate3d(0,0,0)';
       }
       else {
         this.$.main.setAttribute('touch-action', 'pan-y');
+
+        if(this.isRight()) {
+          drawerStyle.webkitTransform = drawerStyle.mozTransform =
+              drawerStyle.msTransform = drawerStyle.transform = 'translate3d(100%,0,0)';
+        }
+        else {
+          drawerStyle.webkitTransform = drawerStyle.mozTransform =
+              drawerStyle.msTransform = drawerStyle.transform = 'translate3d(-100%,0,0)';
+        }
       }
+    },
+
+    selectedChanged : function() {
+      this.openToSelected();
     },
 
     togglePanel: function() {

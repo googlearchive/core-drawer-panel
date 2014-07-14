@@ -126,17 +126,6 @@ polyfill-next-selector { content: ':host .narrow-layout > #drawer > [drawer]'; }
   border: 0;
 }
 
-.narrow-layout > #drawer:not(.core-selected) {
-  -webkit-transform: translate3d(-100%, 0, 0);
-  transform: translate3d(-100%, 0, 0);
-}
-
-:host(.right-drawer) .narrow-layout > #drawer:not(.core-selected) {
-  left: auto;
-  -webkit-transform: translate3d(100%, 0, 0);
-  transform: translate3d(100%, 0, 0);
-}
-
 .narrow-layout > #main {
   left: 0 !important;
   padding: 0;
