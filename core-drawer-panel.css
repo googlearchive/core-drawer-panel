@@ -15,6 +15,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   width: 100%;
   height: 100%;
   overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 #drawer {
@@ -25,6 +26,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   width: 256px;
   height: 100%;
   box-sizing: border-box;
+  overflow-y: auto;
   -mox-box-sizing: border-box;
 }
 
@@ -87,9 +89,9 @@ polyfill-next-selector { content: '#main > [main]'; }
 #scrim {
   position: absolute;
   top: 0;
-  right: 0;
-  bottom: 0;
   left: 0;
+  height: 100%;
+  width: 100%;
   background-color: rgba(0, 0, 0, 0.3);
   visibility: hidden;
   opacity: 0;
@@ -124,17 +126,6 @@ polyfill-next-selector { content: ':host .narrow-layout > #drawer > [drawer]'; }
   border: 0;
 }
 
-.narrow-layout > #drawer:not(.core-selected) {
-  -webkit-transform: translate3d(-100%, 0, 0);
-  transform: translate3d(-100%, 0, 0);
-}
-
-:host(.right-drawer) .narrow-layout > #drawer:not(.core-selected) {
-  left: auto;
-  -webkit-transform: translate3d(100%, 0, 0);
-  transform: translate3d(100%, 0, 0);
-}
-
 .narrow-layout > #main {
   left: 0 !important;
   padding: 0;
@@ -146,7 +137,8 @@ polyfill-next-selector { content: ':host .narrow-layout > #drawer > [drawer]'; }
   padding: 0;
 }
 
-.narrow-layout > #main:not(.core-selected) #scrim {
+.narrow-layout > #main:not(.core-selected) #scrim,
+.moving #scrim {
   visibility: visible;
   opacity: 1;
 }
