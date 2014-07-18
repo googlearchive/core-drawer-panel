@@ -168,8 +168,12 @@ To position the drawer to the right, add `rightDrawer` attribute.
       });
     },
 
+    _mainSelected: function() {
+      return this.selected === 'main';
+    },
+
     togglePanel: function() {
-      this.selected = this.selected === 'main' ? 'drawer' : 'main';
+      this.selected = this._mainSelected() ? 'drawer' : 'main';
     },
 
     openDrawer: function() {
@@ -199,7 +203,7 @@ To position the drawer to the right, add `rightDrawer` attribute.
 
       this.dragging = true;
 
-      if (this.selected === 'main') {
+      if (this._mainSelected()) {
         this.dragging = this.rightDrawer ?
             e.pageX >= this.offsetWidth - this.edgeSwipeSensitivity :
             e.pageX <= this.edgeSwipeSensitivity;
@@ -219,9 +223,9 @@ To position the drawer to the right, add `rightDrawer` attribute.
 
       var x;
       if (this.rightDrawer) {
-        x = Math.max(0, (this.selected === 'main') ? this.width + e.dx : e.dx);
+        x = Math.max(0, this._mainSelected() ? this.width + e.dx : e.dx);
       } else {
-        x = Math.min(0, (this.selected === 'main') ? e.dx - this.width : e.dx);
+        x = Math.min(0, this._mainSelected() ? e.dx - this.width : e.dx);
       }
       this.moveDrawer(x);
     },
