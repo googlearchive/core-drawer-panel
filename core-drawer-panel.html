@@ -193,46 +193,52 @@ To position the drawer to the right, add `rightDrawer` attribute.
     // swipe support for the drawer, inspired by
     // https://github.com/Polymer/core-drawer-panel/pull/6
     trackStart : function(e) {
-      if (this.narrow && !this.disableSwipe) {
-        this.dragging = true;
+      if (!this.narrow && this.disableSwipe) {
+        return;
+      }
 
-        if (this.selected === 'main') {
-          this.dragging = this.rightDrawer ?
-              e.pageX >= this.offsetWidth - this.edgeSwipeSensitivity :
-              e.pageX <= this.edgeSwipeSensitivity;
-        }
+      this.dragging = true;
 
-        if (this.dragging) {
-          this.width = this.$.drawer.offsetWidth;
-          this.transition = false;
-          e.preventTap();
-        }
+      if (this.selected === 'main') {
+        this.dragging = this.rightDrawer ?
+            e.pageX >= this.offsetWidth - this.edgeSwipeSensitivity :
+            e.pageX <= this.edgeSwipeSensitivity;
+      }
+
+      if (this.dragging) {
+        this.width = this.$.drawer.offsetWidth;
+        this.transition = false;
+        e.preventTap();
       }
     },
 
     track : function(e) {
-      if (this.dragging) {
-        var x;
-        if (this.rightDrawer) {
-          x = Math.max(0, (this.selected === 'main') ? this.width + e.dx : e.dx);
-        } else {
-          x = Math.min(0, (this.selected === 'main') ? e.dx - this.width : e.dx);
-        }
-        this.moveDrawer(x);
+      if (!this.dragging) {
+        return;
       }
+
+      var x;
+      if (this.rightDrawer) {
+        x = Math.max(0, (this.selected === 'main') ? this.width + e.dx : e.dx);
+      } else {
+        x = Math.min(0, (this.selected === 'main') ? e.dx - this.width : e.dx);
+      }
+      this.moveDrawer(x);
     },
 
     trackEnd : function(e) {
-      if (this.dragging) {
-        this.dragging = false;
-        this.transition = true;
-        this.moveDrawer(null);
+      if (!this.dragging) {
+        return;
+      }
 
-        if (this.rightDrawer) {
-          this.selected = e.xDirection > 0 ? 'main' : 'drawer';
-        } else {
-          this.selected = e.xDirection > 0 ? 'drawer' : 'main';
-        }
+      this.dragging = false;
+      this.transition = true;
+      this.moveDrawer(null);
+
+      if (this.rightDrawer) {
+        this.selected = e.xDirection > 0 ? 'main' : 'drawer';
+      } else {
+        this.selected = e.xDirection > 0 ? 'drawer' : 'main';
       }
     },
 
