@@ -61,6 +61,20 @@ To position the drawer to the right, add `rightDrawer` attribute.
 
   <link rel="stylesheet" href="core-drawer-panel.css">
 
+  <style>
+    #drawer {
+      width: {{drawerWidth}};
+    }
+
+    #main {
+      left: {{drawerWidth}};
+    }
+
+    .right-drawer #main {
+      right: {{drawerWidth}};
+    }
+
+  </style>
   <core-media-query query="max-width: {{responsiveWidth}}" queryMatches="{{queryMatches}}"></core-media-query>
 
   <core-selector class="{{ {'narrow-layout' : queryMatches, transition : transition, dragging : dragging, 'right-drawer': rightDrawer} | tokenList }}" valueattr="id" selected="{{selected}}">
@@ -97,6 +111,15 @@ To position the drawer to the right, add `rightDrawer` attribute.
        * @default '640px'
        */
       responsiveWidth: '640px',
+      
+      /**
+       * Width of the drawer panel.
+       *
+       * @attribute drawerWidth
+       * @type string
+       * @default '256px'
+       */
+      responsiveWidth: '256px',
       
       /**
        * The panel that is being selected. `drawer` for the drawer panel and
