@@ -336,6 +336,11 @@ To position the drawer to the right, add `rightDrawer` attribute.
           }
           this.peeking = false;
         }
+
+        //disable selection while drawer is dragging
+        this.$.drawer.classList.add('noselect');
+        this.$.main.classList.add('noselect');
+
         this.moveDrawer(this.translateXForDeltaX(e.dx));
       }
     },
@@ -345,6 +350,10 @@ To position the drawer to the right, add `rightDrawer` attribute.
         this.dragging = false;
         this.transition = true;
         this.moveDrawer(null);
+
+        //re-enable text selection after drag event
+        this.$.drawer.classList.remove('noselect');
+        this.$.main.classList.remove('noselect');
 
         if (this.rightDrawer) {
           this.selected = e.xDirection > 0 ? 'main' : 'drawer';

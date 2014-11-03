@@ -25,6 +25,8 @@ core-selector > #drawer {
   will-change: transform;
   box-sizing: border-box;
   -mox-box-sizing: border-box;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .transition > #drawer {
@@ -144,4 +146,13 @@ polyfill-next-selector { content: ':host .narrow-layout > #main > [main]'; }
   right: 0;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
+}
+
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
