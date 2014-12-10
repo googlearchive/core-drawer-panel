@@ -104,6 +104,12 @@ To position the drawer to the right, add `rightDrawer` attribute.
   Polymer('core-drawer-panel', {
 
     /**
+     * Fired while the drawer is swiped to open/close.
+     *
+     * @event core-dragging-drawer
+     */
+
+    /**
      * Fired when the narrow layout changes.
      *
      * @event core-responsive-change
@@ -399,6 +405,7 @@ To position the drawer to the right, add `rightDrawer` attribute.
       } else {
         s.webkitTransform = this.transformForTranslateX(translateX);
       }
+      this.fire('core-dragging-drawer');
     }
 
   });
