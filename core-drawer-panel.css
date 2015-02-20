@@ -158,3 +158,25 @@ polyfill-next-selector { content: 'core-selector:not(.narrow-layout) [core-drawe
 core-selector:not(.narrow-layout) ::content [core-drawer-toggle] {
   display: none;
 }
+
+/*
+fullWindow
+*/
+:host([fullWindow]) {
+  height: auto;
+}
+
+:host([fullWindow]) #main {
+  position: relative;
+  width: calc(100% - {{narrow ? '0' : drawerWidth}});
+}
+
+:host([fullWindow]) #drawer,
+:host([fullWindow]) #scrim {
+  position: fixed;
+}
+
+:host([fullWindow]) content[select="[main]"]::content [fullWindow]::shadow #headerContainer {
+  left: {{!narrow && !rightDrawer && drawerWidth}};
+  right: {{!narrow && rightDrawer && drawerWidth}};
+}
