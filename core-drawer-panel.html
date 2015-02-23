@@ -442,14 +442,14 @@ To position the drawer to the right, add `rightDrawer` attribute.
 
   });
   
+  var iHeader = document._currentScript.ownerDocument.getElementById('indentHeader');
+  var setHeaderAttributes = function(ats) {
+    iHeader.drawerWidth = ats.drawerWidth;
+    iHeader.narrow = ats.narrow;
+    iHeader.rightDrawer = ats.rightDrawer;
+  }
+  
 })();
-
-var iHeader = document._currentScript.ownerDocument.getElementById('indentHeader');
-var setHeaderAttributes = function(ats) {
-  iHeader.drawerWidth = ats.drawerWidth;
-  iHeader.narrow = ats.narrow;
-  iHeader.rightDrawer = ats.rightDrawer;
-}
 
 </script>
 </polymer-element>
