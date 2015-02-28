@@ -110,7 +110,7 @@ To position the drawer to the right, add `rightDrawer` attribute.
 </template>
 <script>
 
-(function() {
+(function(iHeader) {
   
   Polymer('core-drawer-panel', {
 
@@ -433,23 +433,14 @@ To position the drawer to the right, add `rightDrawer` attribute.
     },
     
     drawerModified: function() {
-      setHeaderAttributes({
-        drawerWidth: this.drawerWidth,
-        narrow: this.narrow,
-        rightDrawer: this.rightDrawer
-      });
+      iHeader.drawerWidth = this.drawerWidth;
+      iHeader.narrow = this.narrow;
+      iHeader.rightDrawer = this.rightDrawer;
     }
 
   });
   
-  var iHeader = document._currentScript.ownerDocument.getElementById('indentHeader');
-  var setHeaderAttributes = function(ats) {
-    iHeader.drawerWidth = ats.drawerWidth;
-    iHeader.narrow = ats.narrow;
-    iHeader.rightDrawer = ats.rightDrawer;
-  }
-  
-})();
+})(document._currentScript.ownerDocument.getElementById('indentHeader'));
 
 </script>
 </polymer-element>
