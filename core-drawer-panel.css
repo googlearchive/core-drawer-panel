@@ -58,6 +58,11 @@ core-selector > #main {
   bottom: 0;
 }
 
+core-selector > #main.slide-transition {
+  transition: -webkit-transform ease-in-out 0.3s, width ease-in-out 0.3s;
+  transition: transform ease-in-out 0.3s, width ease-in-out 0.3s;
+}
+
 .transition > #main {
   transition: left ease-in-out 0.3s, padding ease-in-out 0.3s;
 }
