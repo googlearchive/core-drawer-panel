@@ -613,9 +613,10 @@ To position the drawer to the right, add `rightDrawer` attribute.
       // },
 
       onClick: function(e) {
-        var isTargetToggleElement = e.target &&
+        var target = Polymer.dom(e).localTarget;
+        var isTargetToggleElement = target &&
           this.drawerToggleAttribute &&
-          e.target.hasAttribute(this.drawerToggleAttribute);
+          target.hasAttribute(this.drawerToggleAttribute);
 
         if (isTargetToggleElement) {
           this.togglePanel();
