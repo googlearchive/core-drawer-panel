@@ -10,7 +10,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>paper-icon-button basic tests</title>
+  <title>core-drawer-panel basic tests</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
   <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
@@ -26,7 +26,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <test-fixture id="DrawerPanelToggle">
     <template>
-      <core-drawer-panel>
+      <core-drawer-panel selected="main">
         <div drawer></div>
         <div main>
           <div core-drawer-toggle>Simple Toggle</div>
@@ -37,7 +37,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <test-fixture id="DrawerPanelCustomElementToggle">
     <template>
-      <core-drawer-panel>
+      <core-drawer-panel selected="main">
         <div drawer></div>
         <div main>
           <test-toggle core-drawer-toggle></test-toggle>
@@ -63,8 +63,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     });
 
     test('toggles drawer when an element inside a host element with the "core-drawer-toggle" attribute is clicked', function() {
-      var toggle = d2.querySelector('[core-drawer-toggle] div');
-      toggle.dispatchEvent(new CustomEvent('click', {bubbles: true}));
+      var toggle = d2.querySelector('[core-drawer-toggle]');
+      var toggleChild =  (toggle.shadowRoot || toggle).querySelector('div')
+      toggleChild.dispatchEvent(new CustomEvent('click', {bubbles: true}));
       assert.strictEqual(d2.selected, 'drawer');
     });
 
