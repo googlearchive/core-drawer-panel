@@ -77,6 +77,14 @@ To position the drawer to the right, add `rightDrawer` attribute.
 
 <link rel="import" href="../core-media-query/core-media-query.html">
 <link rel="import" href="../core-selector/core-selector.html">
+<link rel="import" href="../core-style/core-style.html">
+
+<core-style id="indentHeader">
+  :host([fullWindow]) #headerContainer {
+    left: {{!narrow && !rightDrawer && drawerWidth}};
+    right: {{!narrow && rightDrawer && drawerWidth}};
+  }
+</core-style>
 
 <polymer-element name="core-drawer-panel" touch-action="auto">
 <template>
@@ -87,7 +95,7 @@ To position the drawer to the right, add `rightDrawer` attribute.
 
   <core-selector class="{{ {'narrow-layout' : narrow, transition : transition, dragging : dragging, 'right-drawer': rightDrawer} | tokenList }}" valueattr="id" selected="{{selected}}">
 
-    <div id="main" _style="left: {{ narrow || rightDrawer ? '0' : drawerWidth }}; right: {{ rightDrawer ? (narrow ? '' : drawerWidth) : '' }};">
+    <div id="main" _style="left: {{ narrow || rightDrawer ? '0' : drawerWidth }}; right: {{ rightDrawer ? (narrow ? '' : drawerWidth) : '' }}; width: calc(100% - {{ fullWindow && !narrow ? drawerWidth : '0' }});">
       <content select="[main]"></content>
       <div id="scrim" on-tap="{{togglePanel}}"></div>
       <div id="edgeSwipeOverlay" hidden?="{{!narrow || disableEdgeSwipe}}"></div>
@@ -102,6 +110,8 @@ To position the drawer to the right, add `rightDrawer` attribute.
 </template>
 <script>
 
+(function(iHeader) {
+  
   Polymer('core-drawer-panel', {
 
     /**
@@ -126,6 +136,8 @@ To position the drawer to the right, add `rightDrawer` attribute.
      */
 
     publish: {
+      
+      fullWindow: {value: false, reflect: true},
 
       /**
        * Width of the drawer panel.
@@ -410,9 +422,25 @@ To position the drawer to the right, add `rightDrawer` attribute.
       } else {
         s.webkitTransform = this.transformForTranslateX(translateX);
       }
+    },
+    
+    ready: function() {
+      this.drawerModified();
+    },
+
+    observe: {
+      'drawerWidth narrow rightdrawer': 'drawerModified'
+    },
+    
+    drawerModified: function() {
+      iHeader.drawerWidth = this.drawerWidth;
+      iHeader.narrow = this.narrow;
+      iHeader.rightDrawer = this.rightDrawer;
     }
 
   });
+  
+})(document._currentScript.ownerDocument.getElementById('indentHeader'));
 
 </script>
 </polymer-element>
