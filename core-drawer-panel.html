@@ -194,6 +194,15 @@ To position the drawer to the right, add `rightDrawer` attribute.
       disableSwipe: false,
       
       /**
+       * If true, you can open the drawer from a swipe in the middle of the screen.
+       *
+       * @attribute swipeAnywhere
+       * @type boolean
+       * @default false
+       */
+      swipeAnywhere: false,
+      
+      /**
        * If true, ignore `responsiveWidth` setting and force the narrow layout.
        *
        * @attribute forceNarrow
@@ -348,7 +357,7 @@ To position the drawer to the right, add `rightDrawer` attribute.
         this.dragging = true;
 
         if (this.isMainSelected()) {
-          this.dragging = this.peeking || this.isEdgeTouch(e);
+          this.dragging = this.peeking || this.isEdgeTouch(e) || this.swipeAnywhere;
         }
 
         if (this.dragging) {
